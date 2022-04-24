@@ -6,6 +6,6 @@ test('creates an Employee object', () => {
 
     expect(employee.getName()).toEqual(expect.any(String));
     expect(employee.getId()).toEqual(expect.any(Number));
-    expect(employee.getEmail()).toEqual(expect.any(String));
+    expect(employee.getEmail()).toEqual(expect.stringContaining('@'));
     expect(employee.getRole()).toBe('Employee');
 });
