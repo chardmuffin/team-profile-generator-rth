@@ -1,44 +1,40 @@
 // create the projects section
-const generateProjects = projectsArr => {
+const generateTeam = membersArr => {
     return `
       <section class="my-3" id="portfolio">
-        <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
         <div class="flex-row justify-space-between">
-        ${projectsArr
-          .filter(({ feature }) => feature)
-          .map(({ name, description, languages, link }) => {
-            return `
-            <div class="col-12 mb-2 bg-dark text-light p-3">
-              <h3 class="portfolio-item-title text-light">${name}</h3>
-              <h5 class="portfolio-languages">
-                Built With:
-                ${languages.map(language => language).join(',')}
-              </h5>
-              <p>${description}</p>
-              <a href="${link}" class="btn"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-            </div>
-          `;
-          })
-          .join('')}
-  
-        ${projectsArr
-          .filter(({ feature }) => !feature)
-          .map(({ name, description, languages, link }) => {
-            console.log(languages);
+        ${membersArr
+          .map(member => {
+
+            let iconRoleString = '<h3>Error</h3>';
+            let line3String = '<p>Error</p>';
+
+            switch (member.role) {
+              case 'Manager':
+                iconRoleString = '<h3 class="portfolio-item-title text-light"><i class="fa-solid fa-mug-hot mr-2"></i>Manager</h3>';
+                line3String = `<p>Office Number: ${member.officeNumber}</p>`;
+                break;
+              case 'Engineer':
+                iconRoleString = '<h3 class="portfolio-item-title text-light"><i class="fa-solid fa-glasses mr-2"></i>Engineer</h3>';
+                line3String = `<p>GitHub: <a href="https://github.com/${member.github}" class="btn mt-auto" target="_blank"><i class="fab fa-github mr-2"></i>${member.github}</a></p>`;
+                break;
+              default:
+                iconRoleString = '<h3 class="portfolio-item-title text-light"><i class="fa-solid fa-user-graduate mr-2"></i> Intern</h3>';
+                line3String = `<p>School: ${member.school}</p>`;
+                break;
+            }
+
             return `
             <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
-              <h3 class="portfolio-item-title text-light">${name}</h3>
-              <h5 class="portfolio-languages">
-                Built With:
-                ${languages.join(', ')}
-              </h5>
-              <p>${description}</p>
-              <a href="${link}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
+              <h2 class="member-name text-light">${member.name}</h2>
+              ${iconRoleString}
+              <p>ID: ${member.id}</p>
+              <p>Email: <a href="mailto:${member.email}" target="_blank">${member.email}</a></p>
+              ${line3String}
             </div>
           `;
           })
-          .join('')}
-      
+          .join('')}   
         </div>
       </section>
     `;
@@ -58,7 +54,7 @@ module.exports = templateData => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Profile Generator</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
       <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="style.css">
     </head>
@@ -66,19 +62,12 @@ module.exports = templateData => {
     <body>
       <header>
         <div class="container flex-row justify-space-between align-center py-3">
-          <h1 class="page-title text-secondary bg-dark py-2 px-3">${templateData[0].name}</h1>
-          <nav class="flex-row">
-            <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" href="https://github.com/${header.github}">GitHub</a>
-          </nav>
+          <h1 class="page-title text-secondary bg-dark py-2 px-3">${templateData[0].name}'s Team</h1>
         </div>
       </header>
       <main class="container my-5">
-        ${generateAbout(about)}
-        ${generateProjects(projects)}
+        ${generateTeam(templateData)}
       </main>
-      <footer class="container text-center py-3">
-        <h3 class="text-dark">&copy;2020 by ${header.name}</h3>
-      </footer>
     </body>
     </html>
     `;
