@@ -2,11 +2,10 @@ const Employee = require('../lib/Employee.js');
 
 test('creates an Employee object', () => {
 
-    const employee = new Employee();
+    const employee = new Employee("Bob Jones", 1, "bobjones@gmail.com");
 
-    expect(employee.getName()).toEqual(expect.any(String));
-    expect(employee.getId()).toEqual(expect.any(Number));
-    expect(employee.getEmail()).toEqual(expect.stringContaining('@'));
-    expect(employee.getEmail()).toEqual(expect.stringContaining('.'));
+    expect(employee.getName()).toEqual("Bob Jones");
+    expect(employee.getId()).toEqual(1);
+    expect(employee.getEmail()).toEqual("bobjones@gmail.com");
     expect(employee.getRole()).toBe('Employee');
 });
