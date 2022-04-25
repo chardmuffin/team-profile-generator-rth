@@ -44,8 +44,6 @@ const generateTeam = membersArr => {
   
 // export function to generate entire page
 module.exports = templateData => {
-
-  console.log(templateData)
   
     return `
     <!DOCTYPE html>
