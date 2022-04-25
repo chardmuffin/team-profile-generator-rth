@@ -1,7 +1,7 @@
 :root {
-    --primary: #9dbdc6;
-    --secondary: #daeaef;
-    --tertiary: #ff3d2e;
+    --primary: #a392ec;
+    --secondary: #edf6f8;
+    --tertiary: #716fee;
     --light: #ffffff;
     --dark: #272f32;
     --border-radius: 0.3rem;
@@ -65,8 +65,8 @@
   
   p {
     font-size: 1.1rem;
-    margin-top: 0;
-    border: 1px solid var(--dark)
+    padding-left: 20px;
+    margin: 0;
   }
   
   a {
@@ -104,24 +104,27 @@
   }
   
   .btn {
-    font-size: 1.3rem;
     text-decoration: none;
-    padding: 0.5rem 1.2rem;
+    padding: 0.4rem 1.2rem;
     width: 100%;
     margin: 5px 0;
     border-radius: var(--border-radius);
     color: var(--dark);
     outline: none;
-    background-color: var(--primary);
+    background-color: var(--tertiary);
   }
   
   .btn:hover {
     color: var(--dark);
-    background-color: var(--secondary);
+    background-color: var(--primary);
   }
   
   .btn-inline {
     display: inline;
+  }
+
+  .shadow {
+    box-shadow: 5px 5px 10px black;
   }
   
   /* CARDS */

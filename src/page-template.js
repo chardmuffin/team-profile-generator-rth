@@ -25,12 +25,14 @@ const generateTeam = membersArr => {
             }
 
             return `
-            <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
+            <div class="shadow col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
               <h2 class="member-name text-light">${member.name}</h2>
               ${iconRoleString}
-              <p>ID: ${member.id}</p>
-              <p>Email: <a href="mailto:${member.email}" target="_blank">${member.email}</a></p>
-              ${line3String}
+              <div class="bg-secondary pt-3 pb-3 text-dark">
+                <p>ID: ${member.id}</p>
+                <p>Email: <a href="mailto:${member.email}" target="_blank">${member.email}</a></p>
+                ${line3String}
+              </div>
             </div>
           `;
           })
